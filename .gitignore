@@ -1,1 +1,4 @@
-secrets.txt
+config.ini
+.git
+.gitignore
+*pycache*
