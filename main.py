@@ -7,15 +7,14 @@ def main():
     c = config.loadconfig('config.ini')
 
     # create api instance
-    api = config.createapi('config.ini')
+    api = config.createapi(c)
 
     # get  most recent tweet
     tweets = twitterapi.timelinetweets(api, c.user, c.count)
 
     for tweet in tweets:
         print(tweet.text)
-
-    print(tweets)
+        print(tweet.created_at)
 
 
 main()

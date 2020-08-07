@@ -31,16 +31,13 @@ def loadconfig(file):
 
 
 # creates api instance based on parameters set in config
-def createapi(configfile):
-    # load config
-    config = loadconfig(configfile)
+def createapi(configobject):
 
-    # set variables
-    apikey = config.apikey
-    apisecretkey = config.apisecretkey
-
-    # # OAuth
-    auth = tweepy.OAuthHandler(apikey, apisecretkey)
+    # OAuth
+    auth = tweepy.OAuthHandler(
+        configobject.apikey,
+        configobject.apisecretkey
+    )
     api = tweepy.API(auth)
 
     # returns api instance
