@@ -1,6 +1,6 @@
 # basic config
 
-import os.path
+import os
 import configparser
 import tweepy
 
@@ -42,3 +42,10 @@ def createapi(configobject):
 
     # returns api instance
     return api
+
+
+# converts data into list
+def loaddata(src):
+    with open(src, newline='') as f:
+        data_list = f.read().split('\n')
+        return data_list
