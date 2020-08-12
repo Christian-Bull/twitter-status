@@ -19,7 +19,7 @@ def main():
         tweet.examine_tweet(f)
         print(tweet.examine_flag)
 
-    print(f)
+        print(tweet.export_tweet(c.url))
 
 
 main()

@@ -18,6 +18,7 @@ class Config:
             self.apisecretkey = c['TOKEN']['apisecretkey']
             self.user = c['PARAMS']['user']
             self.count = c['PARAMS']['count']
+            self.url = c['PARAMS']['URL']
 
         else:
             print(self.configfile + " not found")

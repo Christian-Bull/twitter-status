@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import requests
 
 
 def utc_to_local(utc_dt):
@@ -20,6 +21,10 @@ class TweetObject:
             self.examine_flag = 1
         else:
             self.examine_flag = 0
+
+    def export_tweet(self, url):
+        x = requests.post('{0}/{1}'.format(url, self.examine_flag))
+        return x.text
 
 
 # returns tweets from today
