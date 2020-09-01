@@ -5,8 +5,8 @@ import twitterdb
 
 def main():
     # load config, data
-    c = config.loadconfig('config.ini')
-    f = config.loaddata('src.csv')
+    c = config.loadconfig('assets/config.ini')
+    f = config.loaddata('assets/src.csv')
 
     # db stuff
     connection = twitterdb.connectdb(c.database)
