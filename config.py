@@ -3,6 +3,7 @@
 import os
 import configparser
 import tweepy
+import sqlite3
 
 
 class Config:
@@ -19,6 +20,7 @@ class Config:
             self.user = c['PARAMS']['user']
             self.count = c['PARAMS']['count']
             self.url = c['PARAMS']['URL']
+            self.database = c['DATABASE']['file']
 
         else:
             print(self.configfile + " not found")
@@ -50,3 +52,9 @@ def loaddata(src):
     with open(src, newline='') as f:
         data_list = f.read().split('\n')
         return data_list
+
+
+# db connection
+def connectdb(db_file):
+    conn = sqlite3.connect(db_file)
+    return conn

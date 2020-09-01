@@ -1,5 +1,4 @@
 from datetime import datetime, timezone
-import requests
 
 
 def utc_to_local(utc_dt):
@@ -9,8 +8,6 @@ def utc_to_local(utc_dt):
 class TweetObject:
     def __init__(self, tweetobject):
         self.tweetobject = tweetobject
-
-    def get_details(self):
         self.id = self.tweetobject.id
         self.text = self.tweetobject.full_text  # returns full tweet text
         self.created_at = utc_to_local(self.tweetobject.created_at)
@@ -21,10 +18,6 @@ class TweetObject:
             self.examine_flag = 1
         else:
             self.examine_flag = 0
-
-    def export_tweet(self, url):
-        x = requests.post('{0}/{1}'.format(url, self.examine_flag))
-        return x.text
 
 
 # returns tweets from today
@@ -41,7 +34,7 @@ def timelinetweets(api, user, tweetcount, **kwargs):
 
         # create tweet class, helps apply changes to elements (ex. timezones)
         t = TweetObject(tweet)
-        t.get_details()
+        # t.get_details()
 
         # if the tweet is from today, append to list
         today_flag = kwargs.get('today', None)
