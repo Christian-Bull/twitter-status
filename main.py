@@ -1,15 +1,17 @@
 import config
 import twitterapi
+import twitterdb
 
 
 def main():
     # load config, data
     c = config.loadconfig('config.ini')
     f = config.loaddata('src.csv')
-    # c = config.connectdb(c.database)
 
-    # create table
-    # c.execute(''' CREATE TABLE IF NOT EXISTS twitter''')
+    # db stuff
+    connection = twitterdb.connectdb(c.database)
+    conn = connection.cursor()
+    twitterdb.createtable(conn, c.table)
 
     # create api instance
     api = config.createapi(c)
@@ -18,11 +20,20 @@ def main():
     tweets = twitterapi.timelinetweets(api, c.user, c.count, today=1)
 
     for tweet in tweets:
-        print(tweet.id)
-        print(tweet.text)
-        print(tweet.created_at)
         tweet.examine_tweet(f)
-        print(tweet.examine_flag)
+
+        # insert into db
+        twitterdb.insertrow(
+            conn,
+            c.table,
+            tweet.id,
+            tweet.created_at,
+            tweet.text,
+            tweet.examine_flag
+        )
+
+    connection.commit()
+    connection.close()
 
 
 main()
