@@ -1,3 +1,4 @@
+import os
 import config
 import twitterapi
 import twitterdb
@@ -5,7 +6,7 @@ import twitterdb
 
 def main():
     # load config, data
-    c = config.loadconfig('assets/config.ini')
+    c = config.loadconfig(os.environ['config'])
     f = config.loaddata('assets/src.csv')
 
     # db stuff
