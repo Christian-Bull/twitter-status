@@ -9,6 +9,6 @@ COPY requirements.txt ./
 # installs requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY ../. .
 
 CMD ["python","./main.py"]
